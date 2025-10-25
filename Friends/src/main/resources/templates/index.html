@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div id="container">
+        <div id="main">
+            <h2>Good Relation</h2>
+            <div class="main-pic">
+                <img alt="모래시계" src="/images/minion-time.jpg">
+            </div>
+            <div class="menu">
+                <a th:href="@{/members}">회원 목록</a>
+                <a th:href="@{/members/join}">| 회원 가입</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

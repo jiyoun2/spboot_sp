@@ -1,0 +1,51 @@
+/* 공통 */
+#container{
+    width: 80%;
+    margin: 0 auto;
+    font-family: "NanumSquareB"
+
+}
+/* index style */
+#main {
+    text-align: center;
+}
+h2 {
+    border: 2px solid skyblue;
+    border-radius: 8px;
+    padding: 15px 45px 15px 45px;
+    display: inline-block;
+}
+form {
+}
+.main-pic img {
+    width: 40%;
+    border-radius: 8px;
+}
+a {
+    text-decoration: none;
+    color: black;
+}
+.menu {
+    margin: 10px;
+}
+
+/* join style */
+.joinForm{
+    width: 400px;
+    margin: 0 auto;
+    border-radius: 5px;
+}
+.joinForm ul {
+    padding-inline: 40px;
+}
+.joinForm ul li {
+    list-style: none;
+    padding: 5px 0;
+}
+.joinForm label{
+    width: 80px;
+    float: left;
+}
+.joinForm .btn {
+    margin-top: 15px;
+}
