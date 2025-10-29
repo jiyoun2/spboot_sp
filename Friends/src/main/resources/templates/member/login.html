@@ -2,14 +2,14 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>회원 가입</title>
+    <title>로그인</title>
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
     <div id="container">
         <div id="main">
-            <h2><a th:href="@{/}">회원 가입</a></h2>
-            <form th:action="@{/members/join}" method="post" class="joinForm">
+            <h2><a th:href="@{/}">로그인</a></h2>
+            <form th:action="@{/members/login}" method="post" class="joinForm">
                 <fieldset>
                     <ul>
                         <li>
@@ -20,18 +20,13 @@
                             <label for="pwd">비밀번호 :</label>
                             <input type="password" name="pwd">
                         </li>
-                        <li>
-                            <label for="name">이름 :</label>
-                            <input type="text" name="name">
-                        </li>
-                        <li>
-                            <label for="gender">성별 :</label>
-                            <input type="radio" name="gender" value="남자" checked>남
-                            <input type="radio" name="gender" value="여자">여
-                        </li>
+                        <!-- print out error -->
+                        <div th:if="${error}" class="error">
+                            [[${error}]]
+                        </div>
                         <li class="btn">
-                            <input type="submit" value="가입">
-                            <input type="reset" value="취소" onclick="history.back()">
+                            <input type="submit" value="로그인">
+                            <input type="reset" value="뒤로가기" onclick="history.back()">
                         </li>
                     </ul>
                 </fieldset>

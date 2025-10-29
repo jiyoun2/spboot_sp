@@ -3,10 +3,6 @@
     width: 80%;
     margin: 0 auto;
     font-family: "NanumSquareB"
-
-}
-/* index style */
-#main {
     text-align: center;
 }
 h2 {
@@ -14,8 +10,27 @@ h2 {
     border-radius: 8px;
     padding: 15px 45px 15px 45px;
     display: inline-block;
+    text-align: center;
 }
-form {
+.error {
+    color: #f00;
+    margin-top: 10px;
+    font-size: small;
+}
+ul {
+    padding-inline: 35px;
+}
+ul li {
+    list-style: none;
+    padding: 5px 0;
+}
+textarea {
+    resize: none;
+}
+
+/* index style */
+#main {
+    text-align: center;
 }
 .main-pic img {
     width: 40%;
@@ -33,19 +48,80 @@ a {
 .joinForm{
     width: 400px;
     margin: 0 auto;
-    border-radius: 5px;
+    border-radius: 10px;
 }
-.joinForm ul {
-    padding-inline: 40px;
-}
-.joinForm ul li {
-    list-style: none;
-    padding: 5px 0;
-}
+
 .joinForm label{
     width: 80px;
     float: left;
 }
 .joinForm .btn {
     margin-top: 15px;
+}
+
+/* memberList Style */
+.memberList, .boardList {
+    width: 600px;
+    margin: 20px auto;
+    border: 1px solid #ccc;
+    border-collapse: collapse;
+}
+.home {
+    float: left;
+    padding: 5px;
+}
+.home:hover {
+    background-color: skyblue;
+    border-radius: 5px;
+}
+.memberList th, td, .boardList th, td {
+    border: 1px solid #ccc;
+    padding: 5px 10px;
+    text-align: center;
+}
+
+/* member info style */
+.memberInfo {
+    width: 450px;
+    margin: 0 auto;
+
+}
+.memberInfo label {
+    width: 80px;
+    float: left;
+}
+button {
+    margin-top: 10px;
+}
+.backbtn {
+    float: inline-end;
+}
+/* write style */
+.writeForm, .boardDetail {
+    width: 500px;
+    margin: 0 auto;
+}
+.writeForm ul {
+    padding-left: 0;
+}
+.writeForm ul li {
+    border: none;
+    margin: 10px;
+    width: 450px;
+}
+.writeForm ul li:active {
+}
+/* board detail style */
+.btnWrite{
+    width: 550px;
+    margin: 0 auto;
+    text-align: right;
+}
+.btnWrite button {
+    padding: 6px 10px;
+    border: 2px solid skyblue;
+    border-radius: 5px;
+}
+.pagination a {
+    padding: 4px;
 }

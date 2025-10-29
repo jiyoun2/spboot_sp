@@ -8,13 +8,20 @@
 <body>
     <div id="container">
         <div id="main">
-            <h2>Good Relation</h2>
+            <h2><a th:href="@{/}">Good Relation</a></h2>
             <div class="main-pic">
                 <img alt="모래시계" src="/images/minion-time.jpg">
             </div>
             <div class="menu">
-                <a th:href="@{/members}">회원 목록</a>
+                <th:block th:if="${session.loginEmail}"> <!-- 세션 유무 = true-->
+                    <a th:href="@{/members/logout}" th:text="로그아웃"></a>
+                </th:block>
+                <th:block th:unless="${session.loginEmail}"> <!-- 세션이 없다 -->
+                    <a th:href="@{/members/login}" th:text="로그인"></a>
+                </th:block>
                 <a th:href="@{/members/join}">| 회원 가입</a>
+                <a th:href="@{/members}">| 회원 목록</a>
+                <a th:href="@{/boards/pages}">| 게시판</a>
             </div>
         </div>
     </div>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>게시판</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div id="container">
+        <div id="main">
+            <h2><a th:href="@{/}">게시판</a></h2>
+            <!-- 검색 영역 -->
+            <form th:action="@{/boards/pages}" method="get" class="searchForm">
+                <input type="text" name="keyword">
+                <input type="submit" value="검색">
+            </form>
+            <!-- 글 목록 -->
+            <table class="boardList">
+                <thead>
+                    <tr>
+                        <th>번호</th>
+                        <th>제목</th>
+                        <th>작성자</th>
+                        <th>조회수</th>
+                        <th>작성일</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="b: ${boardList}">
+                        <td th:text="${b.id}"></td>
+                        <td>
+                            <a th:href="@{/boards/{id}(id=${b.id})}" th:text="${b.title}"></a>
+                        </td>
+                        <td th:text="${b.writer}"></td>
+                        <td th:text="${b.hits}"></td>
+                        <td th:text="${#dates.format(b.regDate, 'yyyy-MM-dd HH:mm')}"></td>
+                    </tr>
+                </tbody>
+            </table>
+            <!-- 페이지 영역 -->
+            <div class="pagination">
+                <!-- 이전페이지 -->
+                <a th:href="${boardList.first} ? '#' : @{/boards/pages(page=${boardList.number})}" th:text="Prev"></a>
+                <!-- 페이지 번호 블럭 -->
+                <span th:each="page : ${#numbers.sequence(1,5)}">
+                    <a th:href="@{/boards/pages(page=${page})}" th:text="${page}"></a>
+                </span>
+                <!-- 다음 페이지 -->
+                <a th:href="${boardList.last} ? '#' : @{/boards/pages(page=${boardList.number + 2})}" th:text="Next"></a>
+            </div>
+            <div class="btnWrite">
+                <a th:href="@{/boards/write}">
+                    <button>글쓰기</button>
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
