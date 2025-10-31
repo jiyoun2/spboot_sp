@@ -113,3 +113,11 @@ public class MemberController {
 [JPA - Member Entity 설정]
 ① Member 엔티티를 생성하고 톰캣 서버를 실행하니 오류가 발생하고 정상 작동하지 않았다.
 제시된 오류 내역을 분석하여 해결 방법을 제시하세요. (20점)
+▶(답변)
+'@Id' 를 import 해야함.
+
+② 서버 오류를 해결하여 정상 작동 했으나 자동 순번이 되지 않았다.
+자동 순번(auto_increment)을 생성하는 코드를 기술하세요. (10점)
+▶(답변)
+@CreationTimestamp
+private Timestamp joinDate;
