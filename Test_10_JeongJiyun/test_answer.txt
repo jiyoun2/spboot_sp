@@ -119,5 +119,4 @@ public class MemberController {
 ② 서버 오류를 해결하여 정상 작동 했으나 자동 순번이 되지 않았다.
 자동 순번(auto_increment)을 생성하는 코드를 기술하세요. (10점)
 ▶(답변)
-@CreationTimestamp
-private Timestamp joinDate;
+@GeneratedValue(strategy=GenerationType.IDENTITY)
