@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>admin page</title>
+</head>
+<body>
+    <h2>관리자 페이지</h2>
+    <p>뷰 페이지는 <span th:text="${data}">입니다.</span>
+
+    <p>
+        <a th:href="@{/auth}">[ 메인 ]</a>
+        |<a th:href="@{/logout}">[ 로그아웃 ]</a>
+    </p>
+</body>
+</html>

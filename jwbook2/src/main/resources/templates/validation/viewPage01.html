@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>view page</title>
+</head>
+<body>
+    <h3>상품 등록</h3>
+    <form th:action="@{/valid01}" method="post" th:object="${productDTO}">
+        <div th:if="${#fields.hasAnyErrors()}">
+            <div th:each="err : ${#fields.allErrors()}" th:text="${err}" class="error"></div>
+        </div>
+        <p>
+            품명: <input type="text" th:field="*{name}">
+        </p>
+        <p>
+            가격: <input type="number" th:field="*{price}">
+        </p>
+            <input type="submit" value="등록">
+            <input type="reset" value="취소">
+        </p>
+    </form>
+</body>
+</html>
