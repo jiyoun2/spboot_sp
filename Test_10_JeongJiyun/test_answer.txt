@@ -1,0 +1,115 @@
+[문제] 제시된 회원 가입 화면에서 제약사항 메시지가 출력되도록 유효성 검사를 구현하세요.
+① 폼 데이터를 전달하는 DTO(MemberDTO.java)를 작성하세요. (20점)
+
+package com.test.dto;
+
+import jakarta.validation.constraints.NotEmpty;
+import lombok.Data;
+
+import java.sql.Timestamp;
+
+@Data
+public class MemberDTO {
+    // 번호, 이메일, 비밀번호, 이름, 가입일
+    private Long id;
+
+    @NotEmpty(message = "올바른 형식의 이메일 주소여야 합니다")
+    private String email;
+    @NotEmpty(message = "비밀번호는 필수 항목입니다")
+    private String pwd;
+    @NotEmpty(message = "이름은 필수 항목입니다")
+    private String name;
+    private Timestamp joinDate;
+}
+
+
+② 컨트롤러(MemberController.java)를 작성하세요. (30점)
+
+package com.test.controller;
+
+import com.test.dto.MemberDTO;
+import jakarta.validation.Valid;
+import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.lang.reflect.Member;
+
+@AllArgsConstructor
+@Slf4j
+@RequestMapping("/members")
+@Controller
+public class MemberController {
+
+    // 회원가입 페이지
+    @GetMapping("/signup")
+    public String signupForm(@ModelAttribute MemberDTO memberDTO) {
+        return "member/signup";
+
+    }
+
+    // 회원가입 처리
+    @PostMapping("/signup")
+    public String signup(@Valid @ModelAttribute MemberDTO memberDTO, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) { // 에러가 있으면 상품 등록 폼으로 이동
+            System.out.println("bindingRfesult = " + bindingResult.getFieldError().toString());
+            return "member/signup";
+        } // 에러가 없으면 메인으로
+        return "redirect:/";
+    }
+
+
+
+}
+
+
+③ 뷰 페이지(signup.html)를 작성하세요. (20점)
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>회원 가입</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div id="container">
+    <h2><a th:href="@{/}">회원 가입</a></h2>
+        <form th:action="@{/members/signup}" method="post" class="joinForm" th:object="${memberDTO}">
+            <div th:if="${#fields.hasAnyErrors()}">
+                <div th:each="err : ${#fields.allErrors()}" th:text="${err}" class="error"></div>
+            </div>
+
+            <fieldset>
+                <ul>
+                    <li>
+                        <label for="email">이메일 </label>
+                        <input type="text" name="email" th:field="*{email}">
+                    </li>
+                    <li>
+                        <label for="pwd">비밀번호 </label>
+                        <input type="password" name="pwd" th:field="*{pwd}">
+                    </li>
+                    <li>
+                        <label for="name">이름 </label>
+                        <input type="text" name="name" th:field="*{name}">
+                    </li>
+                    <li class="btn">
+                        <input type="submit" value="가입">
+                        <input type="reset" value="취소" onclick="history.back()">
+                    </li>
+                </ul>
+            </fieldset>
+        </form>
+    </div>
+</body>
+</html>
+
+[JPA - Member Entity 설정]
+① Member 엔티티를 생성하고 톰캣 서버를 실행하니 오류가 발생하고 정상 작동하지 않았다.
+제시된 오류 내역을 분석하여 해결 방법을 제시하세요. (20점)
